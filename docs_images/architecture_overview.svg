@@ -1,0 +1,93 @@
+<svg viewBox="0 0 980 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="GitPerennial runs entirely on your own machine: the installer primes the app once as you, a background service then polls GitHub on a fixed schedule and writes into your local SQLite database, and your browser dashboard reads from that same database. Nothing leaves your computer except the GitHub API calls made with your own token.">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }
+  </style>
+
+  <!-- Your computer boundary -->
+  <rect x="20" y="20" width="940" height="380" rx="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="6 5" opacity="0.55"/>
+  <text x="40" y="46" font-size="13" font-weight="600" fill="currentColor" opacity="0.7">YOUR COMPUTER — nothing below this line ever leaves it</text>
+
+  <!-- Installer -->
+  <rect x="50" y="80" width="170" height="70" rx="10" fill="#eef6ff" stroke="#0b5ed7" stroke-width="1.5"/>
+  <text x="135" y="108" font-size="14" font-weight="600" text-anchor="middle" fill="#0b5ed7">Installer</text>
+  <text x="135" y="126" font-size="11.5" text-anchor="middle" fill="currentColor">.msi / .pkg / .deb</text>
+
+  <!-- Priming run -->
+  <rect x="280" y="80" width="200" height="70" rx="10" fill="#eef6ff" stroke="#0b5ed7" stroke-width="1.5"/>
+  <text x="380" y="103" font-size="14" font-weight="600" text-anchor="middle" fill="#0b5ed7">Priming run</text>
+  <text x="380" y="120" font-size="11" text-anchor="middle" fill="currentColor">runs once, as YOU —</text>
+  <text x="380" y="134" font-size="11" text-anchor="middle" fill="currentColor">sets up the database correctly</text>
+
+  <!-- arrow installer -> priming -->
+  <line x1="220" y1="115" x2="278" y2="115" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="249" y="105" font-size="10.5" text-anchor="middle" fill="currentColor" opacity="0.75">runs</text>
+
+  <!-- Background service -->
+  <rect x="560" y="80" width="200" height="70" rx="10" fill="#eef6ff" stroke="#0b5ed7" stroke-width="1.5"/>
+  <text x="660" y="103" font-size="14" font-weight="600" text-anchor="middle" fill="#0b5ed7">Background service</text>
+  <text x="660" y="120" font-size="11" text-anchor="middle" fill="currentColor">Windows Service / launchd /</text>
+  <text x="660" y="134" font-size="11" text-anchor="middle" fill="currentColor">systemd — always on</text>
+
+  <!-- arrow priming -> service -->
+  <line x1="480" y1="115" x2="558" y2="115" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="519" y="105" font-size="10.5" text-anchor="middle" fill="currentColor" opacity="0.75">then registers</text>
+
+  <!-- GitHub, outside the boundary -->
+  <rect x="790" y="230" width="150" height="70" rx="10" fill="#fff4e5" stroke="#c47b00" stroke-width="1.5"/>
+  <text x="865" y="258" font-size="14" font-weight="600" text-anchor="middle" fill="#c47b00">GitHub</text>
+  <text x="865" y="275" font-size="11" text-anchor="middle" fill="currentColor">your repos' traffic API</text>
+
+  <!-- arrow service -> github (polls) -->
+  <path d="M 700 150 C 700 200, 800 210, 830 228" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="795" y="195" font-size="11" fill="currentColor" opacity="0.85">polls 4×/day, using YOUR token</text>
+
+  <!-- Local database -->
+  <rect x="560" y="230" width="150" height="70" rx="10" fill="#eef6ff" stroke="#0b5ed7" stroke-width="1.5"/>
+  <text x="635" y="258" font-size="14" font-weight="600" text-anchor="middle" fill="#0b5ed7">Local database</text>
+  <text x="635" y="275" font-size="11" text-anchor="middle" fill="currentColor">SQLite, on this machine</text>
+
+  <!-- arrow github -> db (writes, dashed since it's the return leg) -->
+  <path d="M 830 265 C 780 260, 730 258, 712 260" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+  <text x="770" y="245" font-size="11" fill="currentColor" opacity="0.85">writes results</text>
+
+  <!-- arrow service -> db direct -->
+  <line x1="660" y1="150" x2="640" y2="228" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Dashboard -->
+  <rect x="280" y="230" width="200" height="70" rx="10" fill="#eef6ff" stroke="#0b5ed7" stroke-width="1.5"/>
+  <text x="380" y="258" font-size="14" font-weight="600" text-anchor="middle" fill="#0b5ed7">Your browser dashboard</text>
+  <text x="380" y="275" font-size="11" text-anchor="middle" fill="currentColor">localhost:5000</text>
+
+  <!-- arrow db -> dashboard (reads) -->
+  <line x1="558" y1="265" x2="482" y2="265" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="519" y="255" font-size="10.5" text-anchor="middle" fill="currentColor" opacity="0.75">reads</text>
+
+  <!-- Tray icon -->
+  <rect x="50" y="230" width="170" height="70" rx="10" fill="#eef6ff" stroke="#0b5ed7" stroke-width="1.5"/>
+  <text x="135" y="258" font-size="14" font-weight="600" text-anchor="middle" fill="#0b5ed7">Tray / menu-bar icon</text>
+  <text x="135" y="275" font-size="11" text-anchor="middle" fill="currentColor">Start/Stop, Open Dashboard</text>
+
+  <!-- arrow tray -> dashboard -->
+  <line x1="220" y1="265" x2="278" y2="265" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="249" y="255" font-size="10.5" text-anchor="middle" fill="currentColor" opacity="0.75">opens</text>
+
+  <!-- Legend -->
+  <g transform="translate(50, 350)">
+    <rect x="0" y="0" width="16" height="16" rx="3" fill="#eef6ff" stroke="#0b5ed7" stroke-width="1.5"/>
+    <text x="24" y="12" font-size="11.5" fill="currentColor">Runs on your machine</text>
+    <rect x="220" y="0" width="16" height="16" rx="3" fill="#fff4e5" stroke="#c47b00" stroke-width="1.5"/>
+    <text x="244" y="12" font-size="11.5" fill="currentColor">GitHub's own servers</text>
+    <line x1="440" y1="8" x2="470" y2="8" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <text x="478" y="12" font-size="11.5" fill="currentColor">solid = your machine acting</text>
+    <line x1="440" y1="28" x2="470" y2="28" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+    <text x="478" y="32" font-size="11.5" fill="currentColor">dashed = GitHub's response</text>
+  </g>
+
+  <text x="500" y="420" font-size="12" text-anchor="middle" fill="currentColor" opacity="0.7">Only the "polls" arrow ever crosses your computer's boundary — everything else stays local.</text>
+</svg>

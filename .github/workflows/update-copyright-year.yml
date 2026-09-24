@@ -1,0 +1,59 @@
+name: Update copyright year in TERMS.md
+
+# Keeps TERMS.md's "© 2012-<year>" footer current with zero manual
+# steps. TERMS.md is a plain Markdown file GitHub just displays as-is --
+# unlike webhook/terms.php (PHP, computes the year live on every page
+# load) or the MSI's License.rtf (stamped at build time by
+# BuildInstaller.ps1), there's no code that ever runs against this file
+# on its own. This workflow is what fills that gap: it runs on GitHub's
+# own servers, not on anyone's machine, so nobody has to remember to do
+# anything.
+#
+# Runs on two triggers:
+#   - A schedule, once a year on January 1st (UTC), so the year is
+#     correct even if nobody pushes anything that whole year.
+#   - Every push to main, so a fresh commit self-heals the year
+#     immediately if it's ever found to be wrong (e.g. right after this
+#     workflow is first added, or if someone hand-edits TERMS.md and
+#     accidentally reverts the year).
+#   - workflow_dispatch, so it can also be triggered manually from the
+#     GitHub Actions tab if ever needed.
+on:
+  schedule:
+    - cron: "0 6 1 1 *"  # 06:00 UTC on Jan 1 every year
+  push:
+    branches: [main]
+    paths:
+      - TERMS.md
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-year:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Stamp the current year into TERMS.md's copyright line
+        run: |
+          set -euo pipefail
+          YEAR="$(date -u +%Y)"
+          # Matches the exact footer line: "© 2012-<any digits> Shallcross Consulting."
+          # Only ever changes the END year -- 2012 (when the business
+          # started) is never touched.
+          sed -i -E "s/^© 2012–[0-9]{4} Shallcross Consulting\.\$/© 2012–${YEAR} Shallcross Consulting./" TERMS.md
+
+      - name: Commit if the year actually changed
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- TERMS.md; then
+            echo "TERMS.md copyright year already current -- nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add TERMS.md
+          git commit -m "Update TERMS.md copyright year (automated)"
+          git push

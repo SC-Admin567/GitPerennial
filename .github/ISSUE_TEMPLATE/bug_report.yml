@@ -1,0 +1,116 @@
+name: Bug Report
+description: Report a problem running GitPerennial
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! The more detail you
+        provide, the faster this can be tracked down.
+
+        **Please do not paste your GitHub token, license key, or any
+        personal details into this issue.** If the problem involves your
+        license, use the "License Key / Purchase Question" template
+        instead, or email support directly.
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Windows
+        - macOS
+        - Linux
+    validations:
+      required: true
+
+  - type: input
+    id: os-version
+    attributes:
+      label: OS version
+      description: "Windows: Settings -> System -> About. macOS: Apple menu -> About This Mac. Linux: your distro name and version (e.g. Ubuntu 24.04)."
+      placeholder: "e.g. Windows 11 23H2, macOS 15 Sequoia, Ubuntu 24.04"
+    validations:
+      required: true
+
+  - type: input
+    id: gitperennial-version
+    attributes:
+      label: GitPerennial version
+      description: Shown in the dashboard's footer, or on the Settings page under License.
+      placeholder: "e.g. 1.0.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: license-status
+    attributes:
+      label: Free tier or licensed?
+      options:
+        - Free tier (1 repo)
+        - Licensed (perpetual)
+        - Licensed (perpetual + annual renewal)
+        - Not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which part of GitPerennial
+      options:
+        - Installer / setup
+        - Background service (tray icon Start/Stop Service)
+        - Dashboard (Traffic / Referrers / Releases / Issues / Events tabs)
+        - Settings page
+        - Archive page (saved prints/exports)
+        - CSV export
+        - Print / PDF output
+        - License activation or renewal
+        - Not sure / general
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the problem, and what you expected instead
+      placeholder: Tell us what happened
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Opened Settings and clicked ...
+        2. Then ...
+        3. Error appeared when ...
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: |
+        Log files live under your Documents\GitPerennial\logs folder
+        (see Settings -> Data locations for the exact path on your
+        machine). Please remove any personal details before pasting.
+      render: shell
+    validations:
+      required: false
+
+  - type: dropdown
+    id: reproducible
+    attributes:
+      label: Reproducible on re-run?
+      options:
+        - "Yes, happens every time"
+        - "Sometimes"
+        - "No, only happened once"
+        - "Haven't tried again"
+    validations:
+      required: false
