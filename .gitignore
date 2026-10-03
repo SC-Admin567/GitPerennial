@@ -1,0 +1,26 @@
+# This repo holds only documentation + license text + release
+# installers (as GitHub Release assets, never committed as tracked
+# files) — no source, no build output. Nothing expected here beyond
+# stray OS/editor cruft.
+.DS_Store
+Thumbs.db
+
+# --- GitPerennial's own runtime data directories -------------------------
+# If someone clones this repo to the same folder they installed/run
+# GitPerennial from (e.g. C:\Users\<you>\Documents\GitPerennial), the
+# app's own data directories can end up sitting right next to this repo's
+# files. These are never meant to be tracked — real customer data, not
+# repo content — so they're excluded here too, matching GitPerennial-dev's
+# own .gitignore.
+DataBackups/
+Exports/
+LicenseTransfers/
+logs/
+Prints/
+*.db
+*.db-shm
+*.db-wal
+*.gplkey
+
+# --- OS junk -----------------------------------------------------------
+.obsidian/
