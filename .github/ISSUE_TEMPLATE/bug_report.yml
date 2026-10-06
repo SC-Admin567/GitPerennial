@@ -1,0 +1,178 @@
+name: Bug Report
+description: Report a problem running GitPerennial
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! The more detail you
+        provide, the faster this can be tracked down.
+
+        **Please do not paste your GitHub token, license key, or any
+        personal details into this issue.** If the problem involves your
+        license, use the "License Key / Purchase Question" template
+        instead, or email support directly.
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Windows
+        - macOS
+        - Linux
+    validations:
+      required: true
+
+  - type: input
+    id: os-version
+    attributes:
+      label: OS version
+      description: "Windows: Settings -> System -> About. macOS: Apple menu -> About This Mac. Linux: your distro name and version (e.g. Ubuntu 24.04)."
+      placeholder: "e.g. Windows 11 23H2, macOS 15 Sequoia, Ubuntu 24.04"
+    validations:
+      required: true
+
+  - type: input
+    id: gitperennial-version
+    attributes:
+      label: GitPerennial version
+      description: Shown in the dashboard's footer, or on the Settings page under License.
+      placeholder: "e.g. 1.1.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: license-status
+    attributes:
+      label: Free tier or licensed?
+      options:
+        - Free tier (1 repo)
+        - Licensed (perpetual)
+        - Licensed (perpetual + annual renewal)
+        - Not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which part of GitPerennial
+      options:
+        - Installer / setup
+        - Background service (not running, won't start, stops)
+        - Tray icon / notification (missing, wrong colour, Start/Stop Service menu)
+        - Dashboard (Traffic / Referrers / Releases / Issues / Events tabs)
+        - Settings page
+        - Archive page (saved prints/exports)
+        - CSV export
+        - Print / PDF output
+        - License activation or renewal
+        - Not sure / general
+    validations:
+      required: true
+
+  - type: dropdown
+    id: linux-family
+    attributes:
+      label: Linux distro family (only if you are on Linux)
+      options:
+        - Not on Linux
+        - Debian / Ubuntu / Linux Mint (or another apt-based distro)
+        - Fedora / RHEL / Rocky / Alma (or another dnf-based distro)
+        - Arch / Manjaro
+        - openSUSE
+        - Other
+    validations:
+      required: false
+
+  - type: textarea
+    id: linux-details
+    attributes:
+      label: Linux details (only if you are on Linux)
+      description: |
+        Helps narrow down desktop-specific problems such as a missing tray icon.
+        Fill in what you can; skip anything you are unsure of.
+      placeholder: |
+        Desktop environment: GNOME / KDE Plasma / Cinnamon / XFCE / MATE / other
+        Session type (echo $XDG_SESSION_TYPE): wayland / x11
+        Installed from: .deb / .rpm / neither (ran it manually)
+        Service running (systemctl --user status gitperennial): yes / no
+        Dashboard loads in the browser: yes / no
+        Tray helper running (pgrep -fl TrayHelper): yes / no
+        GNOME only - tray notice appeared (check for ~/.local/state/gitperennial/gnome-tray-notice-shown): yes / no
+        GNOME only - output of: gnome-extensions list | grep -i appindicator
+    validations:
+      required: false
+
+  - type: textarea
+    id: mac-windows-details
+    attributes:
+      label: macOS / Windows details (only if you are on one of those)
+      description: |
+        Fill in what you can; skip anything you are unsure of.
+      placeholder: |
+        Mac chip: Apple Silicon / Intel
+        Windows: running as the installed service, or started manually
+        Service / menu-bar or tray icon visible: yes / no
+        Dashboard loads in the browser: yes / no
+    validations:
+      required: false
+
+  - type: textarea
+    id: install-output
+    attributes:
+      label: Installer output (only if the problem is installing)
+      description: |
+        Paste the terminal output from the failed install (for example from
+        `sudo apt install ./gitperennial-v1.1.0.deb` or
+        `sudo dnf install ./gitperennial-v1.1.0.rpm`), or the installer's
+        error message on Windows / macOS. Remove any personal details first.
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the problem, and what you expected instead
+      placeholder: Tell us what happened
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Opened Settings and clicked ...
+        2. Then ...
+        3. Error appeared when ...
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: |
+        Log files live under the GitPerennial\logs folder inside your
+        Documents folder (Documents/GitPerennial/logs on macOS and Linux;
+        see Settings -> Data locations for the exact path on your
+        machine). Please remove any personal details before pasting.
+      render: shell
+    validations:
+      required: false
+
+  - type: dropdown
+    id: reproducible
+    attributes:
+      label: Reproducible on re-run?
+      options:
+        - "Yes, happens every time"
+        - "Sometimes"
+        - "No, only happened once"
+        - "Haven't tried again"
+    validations:
+      required: false
