@@ -1,0 +1,60 @@
+name: License Key / Purchase Question
+description: Lost a key, need a renewal issue looked at, or a purchase problem
+labels: ["license"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Before filing this**, check whether Settings -> License in the
+        app already solves it:
+        - A "Restore my saved license key" button (if this is the same
+          computer you originally activated on).
+        - An "Email support for my key" link — this is usually faster
+          than a public GitHub issue and doesn't require posting any
+          purchase details here.
+
+        **Please do NOT paste your actual license key, checkout email,
+        or receipt number into this public issue.** Describe the
+        problem in general terms below and we'll follow up by email.
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: What's the problem?
+      options:
+        - Lost my license key
+        - Activation failed / rejected
+        - Renewal issue
+        - Machine/computer limit reached
+        - Purchase went through but no key received
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the problem
+      description: General terms only — no keys, emails, or receipt numbers here.
+    validations:
+      required: true
+
+  - type: input
+    id: purchase-timing
+    attributes:
+      label: Roughly when did you purchase?
+      placeholder: "e.g. last week, around August 2026"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Which operating system is this affecting?
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Multiple / not sure
+    validations:
+      required: false

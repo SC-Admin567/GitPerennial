@@ -1,0 +1,6 @@
+# This repo holds only docs + license text (no scripts, no source),
+# so there's no shebang-breaks-on-CRLF risk the way the dev repo's
+# .gitattributes has to guard against. Kept anyway for consistency
+# and to normalize line endings in the diff regardless of contributor
+# platform.
+*.md text eol=lf
