@@ -1,0 +1,52 @@
+name: Feature Request / Question
+description: Suggest an idea or ask a question about GitPerennial
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion or question! GitPerennial has no fixed
+        release schedule, and not every suggestion will be built — but
+        every one is read.
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: What kind of request is this?
+      options:
+        - Feature request
+        - Question about how something works
+        - Documentation improvement suggestion
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What would you like to see, or what would you like to know?
+      placeholder: Describe your idea or question
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case (for feature requests)
+      description: What problem would this solve, or what workflow would it improve?
+    validations:
+      required: false
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Related operating system (if applicable)
+      options:
+        - Not applicable
+        - Windows
+        - macOS
+        - Linux
+        - All platforms
+    validations:
+      required: false
